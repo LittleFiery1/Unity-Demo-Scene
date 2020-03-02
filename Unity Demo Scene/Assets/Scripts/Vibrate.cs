@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class Vibrate : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField]
+    private float vibrateDistance = 1.0f;
+    private float xPos;
+    private float yPos;
+    private float zPos;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        vibrateDistance = -vibrateDistance;
+        xPos = gameObject.GetComponent<Transform>().localPosition.x;
+        yPos = gameObject.GetComponent<Transform>().localPosition.y + vibrateDistance;
+        zPos = gameObject.GetComponent<Transform>().localPosition.z;
+        gameObject.GetComponent<Transform>().localPosition = new Vector3(xPos,yPos,zPos);
     }
 }
