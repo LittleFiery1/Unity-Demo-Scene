@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Vibrate : MonoBehaviour
 {
+    [Tooltip("Alters the distance the object's position will shift.")]
     [SerializeField]
     private float vibrateDistance = 1.0f;
     private float xPos;
