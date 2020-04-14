@@ -8,6 +8,7 @@ using UnityEngine;
 public class InteractWithLookedAt : MonoBehaviour
 {
     private IInteractive lookedAtInteractive;
+    private IInteractive heldInteractive;
     // Update is called once per frame
     void Update()
     {
@@ -15,6 +16,18 @@ public class InteractWithLookedAt : MonoBehaviour
         {
             //Debug.Log("Player pressed interact button");
             lookedAtInteractive.InteractWith();
+        }
+
+        if (Input.GetButton("Interact") && lookedAtInteractive != null && heldInteractive == null)
+        {
+            heldInteractive = lookedAtInteractive;
+            heldInteractive.HoldInteractive(true);
+        }
+
+        if (Input.GetButtonUp("Interact") && heldInteractive != null)
+        {
+            heldInteractive.HoldInteractive(false);
+            heldInteractive = null;
         }
     }
 
