@@ -12,10 +12,12 @@ public class InteractiveObject : MonoBehaviour, IInteractive
     private AudioSource audioSource;
     protected virtual void Awake()
     {
+        //Grabs the audio source
         audioSource = GetComponent<AudioSource>();
     }
     public virtual void InteractWith()
     {
+        //Leaves a debug message if an audio source cannot be played.
         try
         {
             audioSource.Play();
@@ -24,7 +26,6 @@ public class InteractiveObject : MonoBehaviour, IInteractive
         {
             throw new System.Exception("New interactive component needs an audio source.");
         }
-        Debug.Log($"Player Interacted With {gameObject.name}");
     }
 
     public virtual void HoldInteractive(bool selected)

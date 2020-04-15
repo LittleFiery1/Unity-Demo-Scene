@@ -23,6 +23,7 @@ public class DetectLookAtInteractive : MonoBehaviour
 
     public IInteractive LookedAtInteractive
     {
+        //Gets and sets what the currently looked at interactive object is.
         get { return lookedAtInteractive; }
         private set
         {

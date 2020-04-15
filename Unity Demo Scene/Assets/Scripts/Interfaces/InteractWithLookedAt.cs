@@ -14,18 +14,20 @@ public class InteractWithLookedAt : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact") && lookedAtInteractive != null)
         {
-            //Debug.Log("Player pressed interact button");
+            //Interacts with the looked at interactive object when the button is pressed.
             lookedAtInteractive.InteractWith();
         }
 
         if (Input.GetButton("Interact") && lookedAtInteractive != null && heldInteractive == null)
         {
+            //Sets an object as being the one that's "held".
             heldInteractive = lookedAtInteractive;
             heldInteractive.HoldInteractive(true);
         }
 
         if (Input.GetButtonUp("Interact") && heldInteractive != null)
         {
+            //Removes object from being "held" causing it to drop.
             heldInteractive.HoldInteractive(false);
             heldInteractive = null;
         }
@@ -33,6 +35,7 @@ public class InteractWithLookedAt : MonoBehaviour
 
     private void OnLookedAtInteractiveChanged(IInteractive newLookedAtInteractive)
     {
+        //Updates what interactive object is being looked at.
         lookedAtInteractive = newLookedAtInteractive;
     }
 

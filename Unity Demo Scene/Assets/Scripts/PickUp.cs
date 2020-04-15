@@ -11,11 +11,13 @@ public class PickUp : InteractiveObject
     public override void HoldInteractive(bool selected)
     {
         base.HoldInteractive(selected);
+        //Sets when an object is being picked up.
         Selected = selected;
     }
     
     private void FixedUpdate()
     {
+        //Turns isKinematic on and off based on whether or not the object is picked up.
         if (Selected)
         {
             transform.position = playerCharacter.transform.position + playerCharacter.transform.forward * 3;
