@@ -8,8 +8,8 @@ public class InteractiveObject : MonoBehaviour, IInteractive
     [Tooltip("Text that displays when the player is looking at an interactive object.")]
     [SerializeField]
     protected string displayText = nameof(InteractiveObject);
-    public string DisplayText => displayText;
-    private AudioSource audioSource;
+    public virtual string DisplayText => displayText;
+    protected AudioSource audioSource;
     protected virtual void Awake()
     {
         //Grabs the audio source

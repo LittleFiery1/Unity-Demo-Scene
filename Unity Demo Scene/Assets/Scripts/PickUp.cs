@@ -7,6 +7,8 @@ public class PickUp : InteractiveObject
     [SerializeField]
     [Tooltip("Must be the first person camera.")]
     private GameObject playerCharacter;
+    [SerializeField]
+    private float distance = 3.0f;
     private bool Selected;
     public override void HoldInteractive(bool selected)
     {
@@ -20,8 +22,8 @@ public class PickUp : InteractiveObject
         //Turns isKinematic on and off based on whether or not the object is picked up.
         if (Selected)
         {
-            transform.position = playerCharacter.transform.position + playerCharacter.transform.forward * 3;
             GetComponent<Rigidbody>().isKinematic = true;
+            transform.position = playerCharacter.transform.position + playerCharacter.transform.forward * distance;
         }
         else
         {
