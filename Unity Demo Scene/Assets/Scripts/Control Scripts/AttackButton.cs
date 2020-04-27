@@ -9,12 +9,14 @@ public class AttackButton : InteractiveObject
     protected override void Awake()
     {
         base.Awake();
+        //Grabs the animator
         animator = GetComponent<Animator>();
     }
 
     public override void InteractWith()
     {
         base.InteractWith();
+        //Runs the animation
         animator.SetTrigger("Pushed");
     }
 }

@@ -14,6 +14,7 @@ public class Vibrate : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Adjust the position of the game object each frame.
         vibrateDistance = -vibrateDistance;
         xPos = gameObject.GetComponent<Transform>().localPosition.x;
         yPos = gameObject.GetComponent<Transform>().localPosition.y + vibrateDistance;
