@@ -17,4 +17,10 @@ public class ForwardLever : InteractiveObject
         //Plays the animation
         animator.SetTrigger("Pushed");
     }
+
+    public void MoveBox()
+    {
+
+        GameObject.Find("Box").GetComponent<Animator>().SetBool("Moving", true);
+    }
 }

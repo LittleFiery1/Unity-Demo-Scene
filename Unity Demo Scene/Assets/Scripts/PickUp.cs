@@ -10,24 +10,29 @@ public class PickUp : InteractiveObject
     [SerializeField]
     private float distance = 3.0f;
     private bool Selected;
+    private Rigidbody rigidbody;
     public override void HoldInteractive(bool selected)
     {
         base.HoldInteractive(selected);
         //Sets when an object is being picked up.
         Selected = selected;
+        rigidbody = GetComponent<Rigidbody>();
     }
     
     private void FixedUpdate()
     {
         //Turns isKinematic on and off based on whether or not the object is picked up.
-        if (Selected)
+        if (rigidbody != null)
         {
-            GetComponent<Rigidbody>().isKinematic = true;
-            transform.position = playerCharacter.transform.position + playerCharacter.transform.forward * distance;
-        }
-        else
-        {
-            GetComponent<Rigidbody>().isKinematic = false;
+            if (Selected)
+            {
+                rigidbody.isKinematic = true;
+                transform.position = playerCharacter.transform.position + playerCharacter.transform.forward * distance;
+            }
+            else
+            {
+                rigidbody.isKinematic = false;
+            }
         }
     }
 }

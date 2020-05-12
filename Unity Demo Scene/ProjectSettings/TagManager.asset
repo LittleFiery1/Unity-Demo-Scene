@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Turn Lever Selection
+  - Direction
+  - Box
+  - FPSController
   layers:
   - Default
   - TransparentFX

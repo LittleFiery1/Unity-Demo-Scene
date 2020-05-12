@@ -27,6 +27,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        [SerializeField] private AudioClip music;
+        [SerializeField] private AudioSource cameraAudioSource;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -41,6 +43,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_NextStep;
         private bool m_Jumping;
         private AudioSource m_AudioSource;
+        private Animator boxAnimator;
 
         // Use this for initialization
         private void Start()
@@ -55,6 +58,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
 			m_MouseLook.Init(transform , m_Camera.transform);
+            boxAnimator = GameObject.Find("Box").GetComponent<Animator>();
         }
 
 
@@ -125,7 +129,19 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_MoveDir += Physics.gravity*m_GravityMultiplier*Time.fixedDeltaTime;
             }
-            m_CollisionFlags = m_CharacterController.Move(m_MoveDir*Time.fixedDeltaTime);
+            if (!boxAnimator.GetBool("Moving"))
+            {
+                m_CollisionFlags = m_CharacterController.Move(m_MoveDir * Time.fixedDeltaTime);
+            }
+            else
+            {
+                if (cameraAudioSource.clip != music)
+                {
+                    cameraAudioSource.Stop();
+                    cameraAudioSource.clip = music;
+                    cameraAudioSource.Play();
+                }
+            }
 
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
