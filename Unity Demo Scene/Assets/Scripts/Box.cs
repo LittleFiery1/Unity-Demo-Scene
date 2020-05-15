@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField]
+    private Animator fadeIn;
     //[SerializeField]
     //private float distance;
     //[SerializeField]
@@ -117,6 +119,7 @@ public class Box : MonoBehaviour
     public void DoneMoving()
     {
         GetComponent<Animator>().SetBool("Moving",false);
+        fadeIn.SetTrigger("Finished");
     }
 
     //IEnumerator MoveForward()
